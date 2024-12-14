@@ -1,7 +1,7 @@
 # dormitory_management
 
 #### 介绍
-酒店管理系统，纯前端，v2_el目录是vue2+elementui实现，v3_el目录是vue3+elementplus实现
+学生成绩管理系统，纯前端，v2_el目录是vue2+elementui实现，v3_el目录是vue3+elementplus实现
 
 #### 软件架构
 软件架构说明
