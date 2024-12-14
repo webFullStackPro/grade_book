@@ -1,0 +1,83 @@
+$primary-color: #006400;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      // 主色
+      'base': $primary-color
+    ),
+    'success': (
+      // 成功色
+      'base': #1dc779
+    ),
+    'warning': (
+      // 警告色
+      'base': #ffb302
+    ),
+    'danger': (
+      // 危险色
+      'base': #e26237
+    ),
+    'error': (
+      // 错误色
+      'base': #cf4444
+    )
+  )
+);
+
+$box-shadow-base: rgba(0, 0, 0, .3) !default;
+
+.breadcrumb{
+  padding: 10px 0;
+}
+.el-button {
+  font-size: 12px !important; /* 设置字体大小 */
+}
+
+.form-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table-pagination {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  padding: 10px 0;
+}
+
+.select-custom {
+  --el-select-width: 190px;
+}
+
+.pop-dialog-container {
+  min-height: 40vh;
+  max-height: calc(100vh - 155px);
+  .pop-dialog-main {
+    min-height: 40vh;
+    max-height: calc(100vh - 205px);
+    overflow-y: auto;
+  }
+  .pop-dialog-footer {
+    height: 50px;
+  }
+}
+
+.el-input__suffix {
+  cursor: pointer;
+}
+
+.el-menu-item, .el-submenu__title {
+  height: 38px;
+  line-height: 38px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

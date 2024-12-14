@@ -1,0 +1,63 @@
+@import "var";
+
+.register-page {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 60px;
+  background-image: url('~@/assets/login_bg.png');
+  /* 可选的其他样式 */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .register {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 0 8px 0 $box-shadow-base;
+    border-radius: 6px;
+
+    div {
+      text-align: center;
+    }
+
+    @at-root #{&}__logo {
+      img {
+        width: 30%;
+      }
+    }
+
+    @at-root #{&}__title {
+      margin: 10px 0;
+      font-size: 36px;
+      text-transform: uppercase;
+    }
+
+    @at-root #{&}__subtitle {
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+
+    @at-root #{&}__btn {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    span {
+      margin-right: 10px;
+      color: #ffffff;
+    }
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}

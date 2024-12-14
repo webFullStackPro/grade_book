@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+.breadcrumb{
+  padding: 10px 0;
+}
+
+.table-pagination {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.el-popover-border {
+  border: 1px solid $primary-color;
+}
+
+.el-main {
+  padding: 20px 20px !important;
+}
+
+.el-tag {
+  cursor: pointer;
+}
+
+.el-menu-item, .el-submenu__title {
+  height: 38px;
+  line-height: 38px;
+}
+
+.el-submenu .el-menu-item {
+  height: 35px;
+  line-height: 35px;
+}
+
+.el-table--mini td, .el-table--mini th {
+  padding: 1px 0;
+}
+
+.table-header-cell-font {
+  font-size: 13px;
+}
+.table-cell-font {
+  font-size: 12px;
+}
+
+.el-date-editor.el-input, .el-date-editor.el-input__inner {
+  width: 180px;
+}
+
+.form-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.tc {
+  text-align: center;
+}
+
+.el-dialog__body {
+  padding: 0 20px;
+}
+
+.pop-dialog-container {
+  min-height: 40vh;
+  max-height: calc(100vh - 155px);
+  .pop-dialog-main {
+    min-height: 40vh;
+    max-height: calc(100vh - 205px);
+    overflow-y: auto;
+  }
+  .pop-dialog-footer {
+    height: 50px;
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

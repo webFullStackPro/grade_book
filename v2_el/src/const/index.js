@@ -1,0 +1,1 @@
+export const baseUrl = 'http://www.52ejn.com/csapi'
