@@ -1,4 +1,4 @@
-# dormitory_management
+# grade book
 
 #### 介绍
 学生成绩管理系统，纯前端，v2_el目录是vue2+elementui实现，v3_el目录是vue3+elementplus实现
