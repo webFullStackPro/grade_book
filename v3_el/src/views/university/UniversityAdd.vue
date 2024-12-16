@@ -186,7 +186,7 @@ const handleChange = (value: string[]) => {
     universityForm.city = value[1]
   }
   if (value && value.length > 2) {
-    universityForm.area = value[1]
+    universityForm.area = value[2]
   }
 }
 

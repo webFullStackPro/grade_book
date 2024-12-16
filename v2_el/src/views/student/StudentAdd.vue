@@ -267,7 +267,7 @@ export default {
         this.studentForm.city = value[1]
       }
       if (value && value.length > 2) {
-        this.studentForm.area = value[1]
+        this.studentForm.area = value[2]
       }
     },
     onBack () {

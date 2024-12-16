@@ -177,7 +177,7 @@ export default {
         this.universityForm.city = value[1]
       }
       if (value && value.length > 2) {
-        this.universityForm.area = value[1]
+        this.universityForm.area = value[2]
       }
     },
     onBack () {
