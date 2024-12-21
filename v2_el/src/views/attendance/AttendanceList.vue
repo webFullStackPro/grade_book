@@ -94,6 +94,7 @@ import StudentSelector from "@/views/student/StudentSelector.vue";
 import AttendanceAdd from "@/views/attendance/AttendanceAdd.vue"
 import AttendanceView from "@/views/attendance/AttendanceView.vue"
 import listQueryMixin from '@/mixins/listQueryMixin'
+import {getAttendanceStatusText} from "@/utils/dictTranslator";
 export default {
   name: 'AttendanceList',
   components: {CourseSelector,StudentSelector,AttendanceAdd, AttendanceView},
@@ -150,22 +151,10 @@ export default {
         }
         const exportData = []
         for (const d of data.data.list) {
-          exportData.push([d.courseName, d.studentNumber, d.attendanceDate, this.getStatusText(d.status)])
+          exportData.push([d.courseName, d.studentNumber, d.attendanceDate, getAttendanceStatusText(d.status)])
         }
         this.exportToExcel(headers, exportData)
       })
-    },
-    getStatusText (status) {
-      if (status === 10) {
-        return '出勤'
-      }
-      if (status === 20) {
-        return '缺勤'
-      }
-      if (status === 30) {
-        return '迟到'
-      }
-      return ''
     },
     editRow(id) {
       this.selectedAttendanceId = id

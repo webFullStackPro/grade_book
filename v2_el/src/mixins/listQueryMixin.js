@@ -1,6 +1,6 @@
 // listQueryMixin.js
 import * as ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
+import {saveAs} from 'file-saver';
 
 export default {
   data () {
@@ -69,9 +69,6 @@ export default {
         this.pageData.list = []
         this.pageData.count = 0
       }
-    },
-    getGenderText (gender) {
-      return gender === 1 ? '男' : '女'
     },
     exportToExcel(headers, data) {
       const workbook = new ExcelJS.Workbook();

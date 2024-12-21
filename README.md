@@ -1,7 +1,7 @@
 # grade book
 
 #### 介绍
-学生成绩管理系统，纯前端，v2_el目录是vue2+elementui实现，v3_el目录是vue3+elementplus实现
+学生成绩管理系统，纯前端，v2_el目录是vue2+elementui实现，v3_el目录是vue3+elementplus实现，react_antd目录是react+antdesign实现。
 
 #### 软件架构
 软件架构说明
@@ -32,6 +32,16 @@
 4.3.执行  _npm run dev_  本地启动
 
 4.4.浏览器访问http://localhost:1573
+
+5.react+antdesign实现
+
+5.1.命令行进入react_antd目录
+ 
+5.2.执行  _npm install_  安装依赖
+
+5.3.执行  _npm run dev_  本地启动
+
+5.4.浏览器访问http://localhost:1573
 
 
 #### 使用说明

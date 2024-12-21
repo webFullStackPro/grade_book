@@ -1,6 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Layout from '../views/layout/Layout.vue'
-import {Avatar, Document, Grid, Histogram} from "@element-plus/icons-vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +9,7 @@ const router = createRouter({
       name: 'layout',
       component: Layout,
       children: [{
-        path: "/",
+        path: "/Home",
         component: () => import("@/views/Home.vue"),
         name: "Home"
       },{

@@ -42,6 +42,7 @@ export default {
       defaultOpeneds: [],
       type: 0,
       adminMenuItems: [
+        { index: '/Home', icon: 'el-icon-house', title: '主页' },
         { index: '/AdminList', icon: 'el-icon-user-solid', title: '管理员' },
         { index: '/UniversityList', icon: 'el-icon-school', title: '学校信息' },
         { index: '/FacultyList', icon: 'el-icon-office-building', title: '院系信息' },
@@ -54,11 +55,13 @@ export default {
         { index: '/ChartList', icon: 'el-icon-pie-chart', title: '数据统计' }
       ],
       teacherMenuItems: [
+        { index: '/Home', icon: 'el-icon-house', title: '主页' },
         { index: '/TeacherPersonalInfo', icon: 'el-icon-s-custom', title: '教师个人信息' },
         { index: '/CourseListOfTeacher', icon: 'el-icon-s-grid', title: '我的课程' },
         { index: '/GradeListOfTeacher', icon: 'el-icon-document', title: '学生成绩' }
       ],
       studentMenuItems: [
+        { index: '/Home', icon: 'el-icon-house', title: '主页' },
         { index: '/StudentPersonalInfo', icon: 'el-icon-s-custom', title: '学生个人信息' },
         { index: '/CourseListOfStudent', icon: 'el-icon-s-grid', title: '我的课程' },
         { index: '/AttendanceListOfStudent', icon: 'el-icon-s-data', title: '我的考勤' },

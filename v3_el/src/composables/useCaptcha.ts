@@ -32,9 +32,9 @@ export function useCaptcha() {
   };
 
   const generateCaptchaText = (): string => {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possible = 'ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789';
     let text = '';
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;

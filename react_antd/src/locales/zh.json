@@ -1,0 +1,8 @@
+{
+  "title": "XX学生成绩管理系统",
+  "teacherRegisterTitle": "教师注册",
+  "studentRegisterTitle": "学生注册",
+  "welcomeMessage": "欢迎来到XX学生成绩管理系统，使用react+antd开发，欢迎加v共同交流学习",
+  "advertisement": "后端java/python/node，前端v2/v3/react，支持深度定制，远程安装部署，陪伴式讲解",
+  "weixinAlt": "欢迎加v共同交流学习"
+}

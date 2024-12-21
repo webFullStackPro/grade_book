@@ -1,0 +1,45 @@
+.register-page {
+  width: 100vw;
+  height: calc(100vh - 60px);
+  padding-top: 60px;
+  background-image: url('../login_bg.png');
+  /* 可选的其他样式 */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    span {
+      margin-right: 10px;
+      color: #ffffff;
+    }
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
+.register {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, .3);
+  border-radius: 6px;
+}
+.login-title {
+  margin: 0 auto;
+  font-size: 36px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.login-subtitle {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+}

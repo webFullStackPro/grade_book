@@ -33,21 +33,21 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
 import {useRoute} from 'vue-router'
-import { getTypeAsNumber } from '@/composables/getTypeAsNumberFromSessionStorage';
+import {getTypeAsNumber} from '@/composables/getTypeAsNumberFromSessionStorage';
 import {
   Avatar,
-  Expand,
   Document,
+  Expand,
   Fold,
   Grid,
   Histogram,
-  Key,
+  House,
   OfficeBuilding,
+  PieChart,
   Reading,
   School,
-  Tickets,
   User,
-  UserFilled, PieChart
+  UserFilled
 } from '@element-plus/icons-vue';
 
 const route = useRoute()
@@ -66,6 +66,7 @@ const handleSelect = (key: string) => {
 const type = getTypeAsNumber()
 
 const adminMenuItems = [
+  { index: '/Home', icon: House, title: '主页' },
   { index: '/AdminList', icon: UserFilled, title: '管理员' },
   { index: '/UniversityList', icon: School, title: '学校信息' },
   { index: '/FacultyList', icon: OfficeBuilding, title: '院系信息' },
@@ -79,12 +80,14 @@ const adminMenuItems = [
 ]
 
 const teacherMenuItems = [
+  { index: '/Home', icon: House, title: '主页' },
   { index: '/TeacherPersonalInfo', icon: Avatar, title: '教师个人信息' },
   { index: '/CourseListOfTeacher', icon: Grid, title: '我的课程' },
   { index: '/GradeListOfTeacher', icon: Document, title: '学生成绩' }
 ]
 
 const studentMenuItems = [
+  { index: '/Home', icon: House, title: '主页' },
   { index: '/StudentPersonalInfo', icon: Avatar, title: '学生个人信息' },
   { index: '/CourseListOfStudent', icon: Grid, title: '我的课程' },
   { index: '/AttendanceListOfStudent', icon: Histogram, title: '我的考勤' },

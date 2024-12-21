@@ -9,9 +9,9 @@
           </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="updatePass">修改密码</el-dropdown-item>
+          <el-dropdown-item command="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <a class="nav-link" href="javascript:;" @click="onLogout">退出</a>
     </div>
 
     <el-dialog :visible.sync="updatePassFormVisible" title="修改密码" width="400">
@@ -116,6 +116,9 @@ export default {
           type: sessionStorage.getItem('type')
         }
       }
+      if (command === 'logout') {
+        this.onLogout()
+      }
     },
     updatePass () {
       if (this.updatePassForm.newPass !== this.updatePassForm.newPass2) {
@@ -138,13 +141,13 @@ export default {
           }
           this.loading = true
           userApi.updatePass(this.updatePassForm)
-            .then(data => {
-              if (data.data && data.data.code === 1) {
+            .then(resp => {
+              if (resp && resp.code === 1) {
                 this.$message({ message: '修改密码成功', type: 'success' })
                 this.loading = false
                 this.updatePassFormVisible = false
               } else {
-                this.$message.error(data.data.msg ? data.data.msg : '修改密码失败')
+                this.$message.error(resp.msg ? resp.msg : '修改密码失败')
                 this.loading = false
               }
             })
@@ -201,7 +204,7 @@ export default {
 
   @at-root #{&}__nav {
     float: right;
-    margin-right: 20px;
+    margin-right: 50px;
     .nav-link {
       padding: 7px 10px;
       color: #ffffff;

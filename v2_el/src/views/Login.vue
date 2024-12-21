@@ -45,6 +45,7 @@
 <script>
 import userApi from '@/api/userApi'
 import captchaMixin from "@/mixins/captchaMixin";
+import {ADMIN_USERNAME, PASSWORD, STUDENT_USERNAME, TEACHER_USERNAME} from "@/const";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Login',
@@ -54,8 +55,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: 'admin',
-        password: '123456',
+        username: ADMIN_USERNAME,
+        password: PASSWORD,
         verificationCode: '',
         type: 1
       },
@@ -84,24 +85,24 @@ export default {
         if (valid) {
           if (this.generatedVerificationCode.toLowerCase() !== this.loginForm.verificationCode.toLowerCase()) {
             this.$message.error('验证码错误')
-            this.refreshCaptcha()
+            this.handleTypeChange()
             return
           }
           this.loading = true
           // 登录验证
           userApi.login(this.loginForm)
-            .then(data => {
-              if (data.status === 200 && data.data.code === 1) {
+            .then(resp => {
+              if (resp && resp.code === 1) {
                 this.$message.success('登录成功')
-                const lt = data.data.data
+                const lt = resp.data
                 sessionStorage.setItem('loginToken', lt.token)
                 sessionStorage.setItem('type', lt.type)
                 sessionStorage.setItem('uid', lt.uid)
                 sessionStorage.setItem('username', lt.username)
                 this.$router.replace({ path: '/Home' })
               } else {
-                this.$message.error('登录失败，用户名或密码错误')
-                this.refreshCaptcha()
+                this.$message.error(resp && resp.msg ? resp.msg : '登录失败，用户名或密码不正确')
+                this.handleTypeChange()
                 this.loading = false
               }
             })
@@ -128,19 +129,21 @@ export default {
       this.$router.push({ name: 'StudentRegister' })
     },
     handleTypeChange () {
+      this.refreshCaptcha()
+      this.loginForm.verificationCode = ''
       if (this.loginForm.type === 1) {
-        this.loginForm.username = 'admin'
-        this.loginForm.password = '123456'
+        this.loginForm.username = ADMIN_USERNAME
+        this.loginForm.password = PASSWORD
         return
       }
       if (this.loginForm.type === 2) {
-        this.loginForm.username = 'teacher_test_1'
-        this.loginForm.password = '123456'
+        this.loginForm.username = TEACHER_USERNAME
+        this.loginForm.password = PASSWORD
         return
       }
       if (this.loginForm.type === 3) {
-        this.loginForm.username = 'student_test_1'
-        this.loginForm.password = '123456'
+        this.loginForm.username = STUDENT_USERNAME
+        this.loginForm.password = PASSWORD
       }
     }
   }

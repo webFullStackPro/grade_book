@@ -28,9 +28,9 @@ export default {
   },
   methods: {
     displayChart1 () {
-      var chartDom = document.getElementById('chart1');
-      var myChart = echarts.init(chartDom);
-      var option = {
+      const chartDom = document.getElementById('chart1');
+      const myChart = echarts.init(chartDom);
+      const option = {
         xAxis: {
           type: 'category',
           data: ['软件工程', '会计学', '汉语言文学', '应用数学', '心理学', '电子信息', '智能建造'],
@@ -49,14 +49,12 @@ export default {
         ]
       };
 
-      option && myChart.setOption(option);
+      myChart.setOption(option);
     },
     displayChart2 () {
-      var chartDom = document.getElementById('chart2');
-      var myChart = echarts.init(chartDom);
-      var option;
-
-      option = {
+      const chartDom = document.getElementById('chart2');
+      const myChart = echarts.init(chartDom);
+      const option = {
         title: {
           text: '考勤数据',
           subtext: '仅供参考',
@@ -90,7 +88,7 @@ export default {
         ]
       };
 
-      option && myChart.setOption(option);
+      myChart.setOption(option);
     }
   }
 }

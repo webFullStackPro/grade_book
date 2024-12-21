@@ -20,12 +20,12 @@ export default class mockApi {
     })
   }
 
-  static operateUnsuccessfully () {
+  static operateUnsuccessfully (msg) {
     return Promise.resolve({
       status: 200,
       data: {
         code: 0,
-        msg: '操作失败'
+        msg: msg ? msg : '操作失败'
       }
     })
   }

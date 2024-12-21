@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import {inject, onMounted, reactive, ref, toRefs} from 'vue';
+import {onMounted, reactive, ref} from 'vue';
 import {useCaptcha} from '@/composables/useCaptcha'
 import {useRoute, useRouter} from 'vue-router'
 import type {LoginForm} from '@/types/req/loginForm'
@@ -83,12 +83,13 @@ import type {FormInstance} from 'element-plus';
 import {ElMessage} from 'element-plus'
 import type {LoginSession} from "@/types/resp/loginSession";
 import type {Result} from '@/types/result'
+import {ADMIN_USERNAME, PASSWORD, STUDENT_USERNAME, TEACHER_USERNAME} from "@/const";
 
 const loading = ref<boolean>(false)
 const loginFormRef = ref<FormInstance | null>(null);
 const loginForm = reactive<LoginForm>({
-  username: 'admin',
-  password: '123456',
+  username: ADMIN_USERNAME,
+  password: PASSWORD,
   type: 1,
   verificationCode: ''
 })
@@ -114,7 +115,7 @@ const onLogin = async () => {
     if (generatedVerificationCode.value.toLowerCase() !== loginForm.verificationCode.toLowerCase()) {
       ElMessage.error('验证码错误')
       generatedVerificationCode.value = ''
-      drawCaptcha()
+      handleTypeChange()
       return
     }
     if (!loginFormRef.value) {
@@ -124,8 +125,11 @@ const onLogin = async () => {
     loginFormRef.value.validate(async (valid: boolean) => {
       if (valid) {
         const resp: Result<LoginSession> = await userApi.login(loginForm)
-        if (!resp || resp.code !== 1 && resp.data) {
+        console.log('resp', resp)
+        if (!resp || resp.code !== 1) {
           ElMessage.error(resp && resp.msg ? resp.msg : '操作异常')
+          generatedVerificationCode.value = ''
+          handleTypeChange()
           return
         }
         const loginSession: LoginSession | undefined = resp.data
@@ -145,7 +149,7 @@ const onLogin = async () => {
               sessionStorage.removeItem('lastPath')
               router.replace({path: lastPath})
             } else {
-              router.replace({path: "/"})
+              router.replace({path: "/Home"})
             }
           }
         })
@@ -162,19 +166,21 @@ const onLogin = async () => {
 }
 
 const handleTypeChange = () => {
+  loginForm.verificationCode = ''
+  drawCaptcha()
   if (loginForm.type === 1) {
-    loginForm.username = 'admin'
-    loginForm.password = '123456'
+    loginForm.username = ADMIN_USERNAME
+    loginForm.password = PASSWORD
     return
   }
   if (loginForm.type === 2) {
-    loginForm.username = 'teacher_test_1'
-    loginForm.password = '123456'
+    loginForm.username = TEACHER_USERNAME
+    loginForm.password = PASSWORD
     return
   }
   if (loginForm.type === 3) {
-    loginForm.username = 'student_test_1'
-    loginForm.password = '123456'
+    loginForm.username = STUDENT_USERNAME
+    loginForm.password = PASSWORD
   }
 }
 

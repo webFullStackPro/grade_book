@@ -42,26 +42,26 @@
       size="mini"
       header-cell-class-name="table-header-cell-font"
       cell-class-name="table-cell-font">
-      <el-table-column prop="studentNumber" label="学号"></el-table-column>
-      <el-table-column prop="name" label="姓名"></el-table-column>
-      <el-table-column prop="password" label="密码"></el-table-column>
-      <el-table-column prop="gender" label="性别">
+      <el-table-column prop="studentNumber" label="学号" width="80"></el-table-column>
+      <el-table-column prop="name" label="姓名" width="80px"></el-table-column>
+      <el-table-column prop="password" label="密码" width="90"></el-table-column>
+      <el-table-column prop="gender" label="性别" width="50">
         <template v-slot="{ row }">
           <div v-if="row.gender === 1">男</div>
           <div v-if="row.gender === 2">女</div>
         </template>
       </el-table-column>
-      <el-table-column prop="birthDate" label="出生日期"></el-table-column>
-      <el-table-column prop="majorName" label="专业名称"></el-table-column>
-      <el-table-column prop="grade" label="年级"></el-table-column>
-      <el-table-column prop="contactPhone" label="联系电话"></el-table-column>
-      <el-table-column prop="email" label="邮箱"></el-table-column>
-      <el-table-column prop="provinceName" label="省"></el-table-column>
-      <el-table-column prop="cityName" label="市"></el-table-column>
-      <el-table-column prop="areaName" label="区"></el-table-column>
-      <el-table-column prop="address" label="家庭地址"></el-table-column>
-      <el-table-column prop="enrollmentDate" label="入学日期"></el-table-column>
-      <el-table-column prop="graduationDate" label="毕业日期"></el-table-column>
+      <el-table-column prop="birthDate" label="出生日期" width="100"></el-table-column>
+      <el-table-column prop="majorName" label="专业名称" width="130"></el-table-column>
+      <el-table-column prop="grade" label="年级" width="60"></el-table-column>
+      <el-table-column prop="contactPhone" label="联系电话" width="100"></el-table-column>
+      <el-table-column prop="email" label="邮箱" width="200"></el-table-column>
+      <el-table-column prop="provinceName" label="省" width="70"></el-table-column>
+      <el-table-column prop="cityName" label="市" width="70"></el-table-column>
+      <el-table-column prop="areaName" label="区" width="70"></el-table-column>
+      <el-table-column prop="address" label="家庭地址" width="150"></el-table-column>
+      <el-table-column prop="enrollmentDate" label="入学日期" width="100"></el-table-column>
+      <el-table-column prop="graduationDate" label="毕业日期" width="100"></el-table-column>
       <el-table-column fixed="right" label="操作" width="250">
         <template v-slot="{ row }">
           <el-button @click.native.prevent="editRow(row.id)" type="primary">编辑</el-button>
@@ -102,6 +102,7 @@ import MajorSelector from "@/views/major/MajorSelector.vue";
 import StudentAdd from "@/views/student/StudentAdd.vue"
 import StudentView from "@/views/student/StudentView.vue"
 import listQueryMixin from '@/mixins/listQueryMixin'
+import {getGenderText} from "@/utils/dictTranslator";
 export default {
   name: 'StudentList',
   components: {MajorSelector,StudentAdd, StudentView},
@@ -159,7 +160,7 @@ export default {
         }
         const exportData = []
         for (const d of data.data.list) {
-          exportData.push([d.studentNumber, d.name, this.getGenderText(d.gender), d.birthDate, d.majorName, d.grade, d.contactPhone, d.email,
+          exportData.push([d.studentNumber, d.name, getGenderText(d.gender), d.birthDate, d.majorName, d.grade, d.contactPhone, d.email,
             d.provinceName, d.cityName, d.areaName, d.address, d.enrollmentDate, d.graduationDate])
         }
         this.exportToExcel(headers, exportData)

@@ -22,7 +22,7 @@ onMounted(() => {
 
 const displayChart1 = () => {
   const chart1 = echarts.init(document.getElementById('chart1'));
-  var option1 = {
+  const option1 = {
     xAxis: {
       type: 'category',
       data: ['软件工程', '会计学', '汉语言文学', '应用数学', '心理学', '电子信息', '智能建造'],
@@ -41,7 +41,7 @@ const displayChart1 = () => {
     ]
   };
 
-  option1 && chart1.setOption(option1);
+  chart1.setOption(option1);
 }
 
 const displayChart2 = () => {
@@ -80,7 +80,7 @@ const displayChart2 = () => {
     ]
   };
 
-  option2 && chart2.setOption(option2);
+  chart2.setOption(option2);
 }
 </script>
 

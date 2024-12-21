@@ -1,24 +1,25 @@
 import './base'
 import mockApi from "@/api/mockApi";
+import {ADMIN_USERNAME, PASSWORD, STUDENT_USERNAME, TEACHER_USERNAME} from "@/const";
 
 export default class userApi {
   static adminLoginSession = {
     token: '12345678901',
     type: 1,
     uid: 111,
-    username: 'admin'
+    username: ADMIN_USERNAME
   }
   static teacherLoginSession = {
     token: '12345678902',
     type: 2,
     uid: 222,
-    username: 'teacher_test_1'
+    username: TEACHER_USERNAME
   }
   static studentLoginSession = {
     token: '12345678903',
     type: 3,
     uid: 333,
-    username: 'student_test_1'
+    username: STUDENT_USERNAME
   }
 
   static async login(params) {
@@ -30,16 +31,23 @@ export default class userApi {
     if (params.type === 3) {
       returnData = userApi.studentLoginSession
     }
-    return mockApi.operateSuccessfullyWithData(returnData)
+    if (params.username !== returnData.username || params.password !== PASSWORD) {
+      const response = await mockApi.operateUnsuccessfully('用户名或密码不正确')
+      return response.data
+    }
+    const response = await mockApi.operateSuccessfullyWithData(returnData)
+    return response.data
   }
 
   static async logout() {
     console.log('userApi logout')
-    return mockApi.operateSuccessfully()
+    const response = await mockApi.operateSuccessfully()
+    return response.data
   }
 
   static async updatePass(params) {
     console.log('userApi updatePass params', params)
-    return mockApi.operateSuccessfully()
+    const response = await mockApi.operateSuccessfully()
+    return response.data
   }
 }

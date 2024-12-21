@@ -113,6 +113,7 @@ import FacultySelector from "@/views/faculty/FacultySelector.vue";
 import TeacherAdd from "@/views/teacher/TeacherAdd.vue"
 import TeacherView from "@/views/teacher/TeacherView.vue"
 import listQueryMixin from '@/mixins/listQueryMixin'
+import {getGenderText, getTitleText} from "@/utils/dictTranslator";
 export default {
   name: 'TeacherList',
   components: {FacultySelector,TeacherAdd, TeacherView},
@@ -166,24 +167,10 @@ export default {
         }
         const exportData = []
         for (const d of data.data.list) {
-          exportData.push([d.facultyName, d.name, this.getTitleText(d.title), this.getGenderText(d.gender), d.contactPhone, d.email, d.profile])
+          exportData.push([d.facultyName, d.name, getTitleText(d.title), getGenderText(d.gender), d.contactPhone, d.email, d.profile])
         }
         this.exportToExcel(headers, exportData)
       })
-    },
-    getTitleText (title) {
-      if (title === 1) {
-        return '助教'
-      }
-      if (title === 2) {
-        return '讲师'
-      }
-      if (title === 3) {
-        return '副教授'
-      }
-      if (title === 4) {
-        return '教授'
-      }
     },
     editRow(id) {
       this.selectedTeacherId = id

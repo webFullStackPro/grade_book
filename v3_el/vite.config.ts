@@ -53,11 +53,6 @@ export default defineConfig((mode) => {
           additionalData: ` @use "@/assets/color.scss" as *; `
         }
       }
-    },
-    server: {
-      fs: {
-        allow: ['D:/nodews/v3_el_2/node_modules', 'D:/peggiews/grade_book/grade_book_v3_el']
-      }
     }
   }
 })
