@@ -1,0 +1,98 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>教师信息列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="facultyName">院系名称</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="facultyNameSuffixIconButton">
+        <input nz-input formControlName="facultyName" placeholder="请选择院系名称" readonly />
+      </nz-input-group>
+      <ng-template #facultyNameSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findFaculty()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">姓名</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="请输入姓名" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="title">职称</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="title" class="custom-select-width">
+        <nz-option nzLabel="助教" [nzValue]="1"></nz-option>
+        <nz-option nzLabel="讲师" [nzValue]="2"></nz-option>
+        <nz-option nzLabel="副教授" [nzValue]="3"></nz-option>
+        <nz-option nzLabel="教授" [nzValue]="4"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="gender">性别</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="gender" class="custom-select-width">
+        <nz-option nzLabel="男" [nzValue]="1"></nz-option>
+        <nz-option nzLabel="女" [nzValue]="2"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="contactPhone">联系电话</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="contactPhone" placeholder="请输入联系电话" />
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" [nzLoading]="searchLoading" (click)="onExport()">导出</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>院系名称</th>
+      <th>姓名</th>
+      <th>密码</th>
+      <th>职称</th>
+      <th>性别</th>
+      <th>联系电话</th>
+      <th>邮箱</th>
+      <th>教师简介</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.facultyName}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.password}}</td>
+      <td>
+        <ng-container *ngIf="data.title === 1">助教</ng-container>
+        <ng-container *ngIf="data.title === 2">讲师</ng-container>
+        <ng-container *ngIf="data.title === 3">副教授</ng-container>
+        <ng-container *ngIf="data.title === 4">教授</ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf="data.gender === 1">男</ng-container>
+        <ng-container *ngIf="data.gender === 2">女</ng-container>
+      </td>
+      <td>{{data.contactPhone}}</td>
+      <td>{{data.email}}</td>
+      <td class="ellipsis">{{data.profile}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<faculty-selector (facultySelectedEvent)="handleFacultySelectedEvent($event)"></faculty-selector>
+<teacher-add (addedEvent)="onAdded($event)"></teacher-add>
+<teacher-view></teacher-view>

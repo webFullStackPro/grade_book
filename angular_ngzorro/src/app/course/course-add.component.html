@@ -1,0 +1,80 @@
+<nz-modal [(nzVisible)]="isVisible" [nzWidth]="modalWidth" (nzOnCancel)="onBack()" [nzStyle]="{'top': '50px'}">
+  <div *nzModalTitle>{{ title }}</div>
+  <ng-container *nzModalContent>
+    <form [formGroup]="courseForm" (keydown.enter)="$event.preventDefault()">
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="facultyName" nzRequired>院系名称</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择院系名称'">
+              <nz-input-group nzSearch [nzAddOnAfter]="facultyNameSuffixIconButton">
+                <input nz-input formControlName="facultyName" placeholder="请选择院系名称" readonly />
+              </nz-input-group>
+              <ng-template #facultyNameSuffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="findFaculty()"><nz-icon nzType="search" /></button>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="teacherName" nzRequired>教师姓名</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择教师姓名'">
+              <nz-input-group nzSearch [nzAddOnAfter]="teacherNameSuffixIconButton">
+                <input nz-input formControlName="teacherName" placeholder="请选择教师姓名" readonly />
+              </nz-input-group>
+              <ng-template #teacherNameSuffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="findTeacher()"><nz-icon nzType="search" /></button>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="code" nzRequired>课程代码</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入课程代码'">
+              <input nz-input formControlName="code" placeholder="请输入课程代码" maxlength="32"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>课程名称</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入课程名称'">
+              <input nz-input formControlName="name" placeholder="请输入课程名称" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="credit" nzRequired>学分</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入学分'">
+            <nz-input-number formControlName="credit" [nzMin]="1" [nzMax]="10" />
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="courseDescription">课程描述</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="courseDescription" placeholder="请输入课程描述" maxlength="65535"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+    </form>
+  </ng-container>
+  <div *nzModalFooter>
+    <div class="form-button-container">
+      <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="saveLoading">保存</button>
+      <button nz-button nzType="default" (click)="onReset()" [nzLoading]="saveLoading">重置</button>
+      <button nz-button nzType="default" (click)="onBack()">关闭</button>
+    </div>
+  </div>
+</nz-modal>
+<faculty-selector (facultySelectedEvent)="handleFacultySelectedEvent($event)"></faculty-selector>
+<teacher-selector (teacherSelectedEvent)="handleTeacherSelectedEvent($event)"></teacher-selector>

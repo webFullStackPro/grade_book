@@ -1,0 +1,79 @@
+<nz-modal [(nzVisible)]="isVisible" [nzWidth]="modalWidth" (nzOnCancel)="onBack()" [nzStyle]="{'top': '50px'}">
+  <div *nzModalTitle>{{ title }}</div>
+  <ng-container *nzModalContent>
+    <form [formGroup]="universityForm" (keydown.enter)="$event.preventDefault()">
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>学校名称</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入学校名称'">
+              <input nz-input formControlName="name" placeholder="请输入学校名称" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="establishmentDate">成立日期</nz-form-label>
+            <nz-form-control >
+              <nz-date-picker formControlName="establishmentDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="contactPhone" nzRequired>联系电话</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入联系电话'">
+              <input nz-input formControlName="contactPhone" placeholder="请输入联系电话" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>邮箱</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入邮箱'">
+              <input nz-input formControlName="email" placeholder="请输入邮箱" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="area">省/市/区</nz-form-label>
+            <nz-form-control>
+              <nz-cascader [nzOptions]="provinceCityAreaOptions" formControlName="provinceCityArea"
+                           nzValueProperty="code" nzLabelProperty="name"></nz-cascader>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="location" nzRequired>地址</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入地址'">
+              <input nz-input formControlName="location" placeholder="请输入地址" maxlength="255"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="universityDescription">学校简介</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="universityDescription" placeholder="请输入学校简介" maxlength="65535"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+    </form>
+  </ng-container>
+  <div *nzModalFooter>
+    <div class="form-button-container">
+      <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="saveLoading">保存</button>
+      <button nz-button nzType="default" (click)="onReset()" [nzLoading]="saveLoading">重置</button>
+      <button nz-button nzType="default" (click)="onBack()">关闭</button>
+    </div>
+  </div>
+</nz-modal>

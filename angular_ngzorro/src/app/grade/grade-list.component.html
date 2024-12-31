@@ -1,0 +1,60 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>成绩信息列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="courseName">课程名称</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="courseNameSuffixIconButton">
+        <input nz-input formControlName="courseName" placeholder="请选择课程名称" readonly />
+      </nz-input-group>
+      <ng-template #courseNameSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findCourse()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="studentNumber">学生学号</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="studentNumberSuffixIconButton">
+        <input nz-input formControlName="studentNumber" placeholder="请选择学生学号" readonly />
+      </nz-input-group>
+      <ng-template #studentNumberSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findStudent()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" [nzLoading]="searchLoading" (click)="onExport()">导出</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>课程名称</th>
+      <th>学生学号</th>
+      <th>成绩</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.courseName}}</td>
+      <td>{{data.studentNumber}}</td>
+      <td>{{data.grade}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<course-selector (courseSelectedEvent)="handleCourseSelectedEvent($event)"></course-selector>
+<student-selector (studentSelectedEvent)="handleStudentSelectedEvent($event)"></student-selector>
+<grade-add (addedEvent)="onAdded($event)"></grade-add>
+<grade-view></grade-view>

@@ -1,0 +1,51 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>管理员列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="username">用户名</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="username" placeholder="请输入用户名" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">姓名</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="请输入姓名" />
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>密码</th>
+      <th>姓名</th>
+      <th>创建时间</th>
+      <th>最后修改时间</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.username}}</td>
+      <td>{{data.password}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.createTime}}</td>
+      <td>{{data.modifyTime}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<admin-add (addedEvent)="onAdded($event)"></admin-add>
+<admin-view></admin-view>

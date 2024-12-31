@@ -1,0 +1,142 @@
+<nz-modal [(nzVisible)]="isVisible" [nzWidth]="modalWidth" (nzOnCancel)="onBack()" [nzStyle]="{'top': '50px'}">
+  <div *nzModalTitle>{{ title }}</div>
+  <ng-container *nzModalContent>
+    <form [formGroup]="studentForm" (keydown.enter)="$event.preventDefault()">
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="studentNumber" nzRequired>学号</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入学号'">
+              <input nz-input formControlName="studentNumber" placeholder="请输入学号" maxlength="20"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>姓名</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入姓名'">
+              <input nz-input formControlName="name" placeholder="请输入姓名" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="password" nzRequired>密码</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入密码'">
+              <input nz-input formControlName="password" placeholder="请输入密码" maxlength="255"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="gender" nzRequired>性别</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择性别'">
+              <nz-select formControlName="gender">
+                <nz-option nzLabel="男" [nzValue]="1"></nz-option>
+                <nz-option nzLabel="女" [nzValue]="2"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="birthDate">出生日期</nz-form-label>
+            <nz-form-control >
+              <nz-date-picker formControlName="birthDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="majorName" nzRequired>专业名称</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择专业名称'">
+              <nz-input-group nzSearch [nzAddOnAfter]="majorNameSuffixIconButton">
+                <input nz-input formControlName="majorName" placeholder="请选择专业名称" readonly />
+              </nz-input-group>
+              <ng-template #majorNameSuffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="findMajor()"><nz-icon nzType="search" /></button>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="grade" nzRequired>年级</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入年级'">
+            <nz-input-number formControlName="grade" [nzMin]="2000" [nzMax]="2100" />
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="contactPhone" nzRequired>联系电话</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入联系电话'">
+              <input nz-input formControlName="contactPhone" placeholder="请输入联系电话" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>邮箱</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请输入邮箱'">
+              <input nz-input formControlName="email" placeholder="请输入邮箱" maxlength="64"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="area">省/市/区</nz-form-label>
+            <nz-form-control>
+              <nz-cascader [nzOptions]="provinceCityAreaOptions" formControlName="provinceCityArea"
+                           nzValueProperty="code" nzLabelProperty="name"></nz-cascader>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="address">家庭地址</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="address" placeholder="请输入家庭地址" maxlength="255"/>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="enrollmentDate">入学日期</nz-form-label>
+            <nz-form-control >
+              <nz-date-picker formControlName="enrollmentDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="graduationDate">毕业日期</nz-form-label>
+            <nz-form-control >
+              <nz-date-picker formControlName="graduationDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+    </form>
+  </ng-container>
+  <div *nzModalFooter>
+    <div class="form-button-container">
+      <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="saveLoading">保存</button>
+      <button nz-button nzType="default" (click)="onReset()" [nzLoading]="saveLoading">重置</button>
+      <button nz-button nzType="default" (click)="onBack()">关闭</button>
+    </div>
+  </div>
+</nz-modal>
+<major-selector (majorSelectedEvent)="handleMajorSelectedEvent($event)"></major-selector>

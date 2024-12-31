@@ -1,0 +1,72 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>课程信息列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="facultyName">院系名称</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="facultyNameSuffixIconButton">
+        <input nz-input formControlName="facultyName" placeholder="请选择院系名称" readonly />
+      </nz-input-group>
+      <ng-template #facultyNameSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findFaculty()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="teacherName">教师姓名</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="teacherNameSuffixIconButton">
+        <input nz-input formControlName="teacherName" placeholder="请选择教师姓名" readonly />
+      </nz-input-group>
+      <ng-template #teacherNameSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findTeacher()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">课程名称</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="请输入课程名称" />
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" [nzLoading]="searchLoading" (click)="onExport()">导出</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>院系名称</th>
+      <th>教师姓名</th>
+      <th>课程代码</th>
+      <th>课程名称</th>
+      <th>学分</th>
+      <th>课程描述</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.facultyName}}</td>
+      <td>{{data.teacherName}}</td>
+      <td>{{data.code}}</td>
+      <td>{{data.name}}</td>
+      <td>{{data.credit}}</td>
+      <td class="ellipsis">{{data.courseDescription}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<faculty-selector (facultySelectedEvent)="handleFacultySelectedEvent($event)"></faculty-selector>
+<teacher-selector (teacherSelectedEvent)="handleTeacherSelectedEvent($event)"></teacher-selector>
+<course-add (addedEvent)="onAdded($event)"></course-add>
+<course-view></course-view>

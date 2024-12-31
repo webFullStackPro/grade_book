@@ -1,0 +1,49 @@
+<nz-header class="no-padding">
+  <div class="header">
+    <div class="header-title">{{title}}</div>
+    <div class="middle"><span>版权所有 &copy; 2024 - 2026 <a href="http://www.52ejn.com" target="_blank">源码学习网</a></span><a href="http://beian.miit.gov.cn" target="_blank">粤ICP备2024308896号-1</a></div>
+    <div class="header-nav">
+      <a nz-dropdown [nzDropdownMenu]="menu" class="header-nav-content">
+        {{ username }}
+        <nz-icon nzType="down" />
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="handleUpdatePass()">修改密码</li>
+          <li nz-menu-item (click)="handleLogout()">退出</li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+  <nz-modal [(nzVisible)]="isVisible" [nzWidth]="'50%'" nzTitle="修改密码" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+      <form [formGroup]="updatePassForm" (ngSubmit)="handleOk()" (keydown.enter)="handleOk()">
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="oldPass">原密码</nz-form-label>
+          <nz-form-control [nzErrorTip]="'请输入原密码'">
+            <input nz-input formControlName="oldPass" placeholder="请输入原密码" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="newPass">新密码</nz-form-label>
+          <nz-form-control [nzErrorTip]="'请输入新密码'">
+            <input nz-input type="password" formControlName="newPass" placeholder="请输入新密码" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="newPass2">新密码确认</nz-form-label>
+          <nz-form-control [nzErrorTip]="'请再次输入新密码'">
+            <input nz-input formControlName="newPass2" placeholder="请再次输入新密码" />
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+    <div *nzModalFooter>
+      <div class="form-button-container">
+        <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="loading">保存</button>
+        <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+      </div>
+    </div>
+  </nz-modal>
+</nz-header>
+

@@ -1,0 +1,66 @@
+<nz-modal [(nzVisible)]="isVisible" [nzWidth]="modalWidth" (nzOnCancel)="onBack()" [nzStyle]="{'top': '50px'}">
+  <div *nzModalTitle>{{ title }}</div>
+  <ng-container *nzModalContent>
+    <form [formGroup]="attendanceForm" (keydown.enter)="$event.preventDefault()">
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="courseName" nzRequired>课程名称</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择课程名称'">
+              <nz-input-group nzSearch [nzAddOnAfter]="courseNameSuffixIconButton">
+                <input nz-input formControlName="courseName" placeholder="请选择课程名称" readonly />
+              </nz-input-group>
+              <ng-template #courseNameSuffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="findCourse()"><nz-icon nzType="search" /></button>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="studentNumber" nzRequired>学生学号</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择学生学号'">
+              <nz-input-group nzSearch [nzAddOnAfter]="studentNumberSuffixIconButton">
+                <input nz-input formControlName="studentNumber" placeholder="请选择学生学号" readonly />
+              </nz-input-group>
+              <ng-template #studentNumberSuffixIconButton>
+                <button nz-button nzType="primary" nzSearch (click)="findStudent()"><nz-icon nzType="search" /></button>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="10">
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="attendanceDate">考勤日期</nz-form-label>
+            <nz-form-control >
+              <nz-date-picker formControlName="attendanceDate" nzFormat="yyyy-MM-dd"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+        <nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label [nzSpan]="6" nzFor="status" nzRequired>状态</nz-form-label>
+            <nz-form-control [nzErrorTip]="'请选择状态'">
+              <nz-select formControlName="status">
+                <nz-option nzLabel="出勤" [nzValue]="10"></nz-option>
+                <nz-option nzLabel="缺勤" [nzValue]="20"></nz-option>
+                <nz-option nzLabel="迟到" [nzValue]="30"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-col>
+      </nz-row>
+    </form>
+  </ng-container>
+  <div *nzModalFooter>
+    <div class="form-button-container">
+      <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="saveLoading">保存</button>
+      <button nz-button nzType="default" (click)="onReset()" [nzLoading]="saveLoading">重置</button>
+      <button nz-button nzType="default" (click)="onBack()">关闭</button>
+    </div>
+  </div>
+</nz-modal>
+<course-selector (courseSelectedEvent)="handleCourseSelectedEvent($event)"></course-selector>
+<student-selector (studentSelectedEvent)="handleStudentSelectedEvent($event)"></student-selector>

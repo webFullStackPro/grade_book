@@ -1,0 +1,97 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>教师个人信息</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form [formGroup]="teacherForm" (keydown.enter)="$event.preventDefault()">
+  <nz-row [nzGutter]="10">
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="facultyName" nzRequired>院系名称</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请选择院系名称'">
+          <nz-input-group nzSearch [nzAddOnAfter]="facultyNameSuffixIconButton">
+            <input nz-input formControlName="facultyName" placeholder="请选择院系名称" readonly />
+          </nz-input-group>
+          <ng-template #facultyNameSuffixIconButton>
+            <button nz-button nzType="primary" nzSearch (click)="findFaculty()"><nz-icon nzType="search" /></button>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="name" nzRequired>姓名</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入姓名'">
+          <input nz-input formControlName="name" placeholder="请输入姓名" maxlength="64"/>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row [nzGutter]="10">
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="password" nzRequired>密码</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入密码'">
+          <input nz-input formControlName="password" placeholder="请输入密码" maxlength="255"/>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="title" nzRequired>职称</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请选择职称'">
+          <nz-select formControlName="title">
+            <nz-option nzLabel="助教" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="讲师" [nzValue]="2"></nz-option>
+            <nz-option nzLabel="副教授" [nzValue]="3"></nz-option>
+            <nz-option nzLabel="教授" [nzValue]="4"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row [nzGutter]="10">
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="gender" nzRequired>性别</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请选择性别'">
+          <nz-select formControlName="gender">
+            <nz-option nzLabel="男" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="女" [nzValue]="2"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="contactPhone" nzRequired>联系电话</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入联系电话'">
+          <input nz-input formControlName="contactPhone" placeholder="请输入联系电话" maxlength="64"/>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+  <nz-row [nzGutter]="10">
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>邮箱</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入邮箱'">
+          <input nz-input formControlName="email" placeholder="请输入邮箱" maxlength="64"/>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+    <nz-col [nzSpan]="11">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="profile">教师简介</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="profile" placeholder="请输入教师简介" maxlength="65535"/>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-col>
+  </nz-row>
+</form>
+<div class="form-button-container">
+  <button nz-button nzType="primary" (click)="onSave()" [nzLoading]="saveLoading">保存</button>
+</div>
+<faculty-selector (facultySelectedEvent)="handleFacultySelectedEvent($event)"></faculty-selector>

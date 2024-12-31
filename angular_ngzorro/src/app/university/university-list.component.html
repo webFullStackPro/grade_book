@@ -1,0 +1,59 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>学校信息列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="name">学校名称</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="请输入学校名称" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="location">地址</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="location" placeholder="请输入地址" />
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>学校名称</th>
+      <th>成立日期</th>
+      <th>联系电话</th>
+      <th>邮箱</th>
+      <th>省</th>
+      <th>市</th>
+      <th>区</th>
+      <th>地址</th>
+      <th>学校简介</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.name}}</td>
+      <td>{{data.establishmentDate}}</td>
+      <td>{{data.contactPhone}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.provinceName}}</td>
+      <td>{{data.cityName}}</td>
+      <td>{{data.areaName}}</td>
+      <td>{{data.location}}</td>
+      <td class="ellipsis">{{data.universityDescription}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<university-add (addedEvent)="onAdded($event)"></university-add>
+<university-view></university-view>

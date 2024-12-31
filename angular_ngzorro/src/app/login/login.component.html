@@ -1,0 +1,47 @@
+<div class="login-page">
+  <div class="login">
+    <div class="title">{{ title }}</div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" (keydown.enter)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="4" nzFor="username">用户名</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入用户名'">
+          <input nz-input formControlName="username" placeholder="请输入用户名" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="4" nzFor="password">密码</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入密码'">
+          <input nz-input type="password" formControlName="password" placeholder="请输入密码" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired [nzSpan]="4" nzFor="verificationCode">验证码</nz-form-label>
+        <nz-form-control [nzErrorTip]="'请输入验证码'">
+          <input nz-input formControlName="verificationCode" placeholder="请输入验证码" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <div class="captcha-container">
+          <app-captcha (verificationCodeGenerated)="onVerificationCodeGenerated($event)"></app-captcha>
+        </div>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <div class="login-type">
+            <nz-radio-group formControlName="type">
+              <label nz-radio [nzValue]="1">管理员</label>
+              <label nz-radio [nzValue]="2">教师</label>
+              <label nz-radio [nzValue]="3">学生</label>
+            </nz-radio-group>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <div class="btn-container">
+      <button nz-button nzType="primary" [nzLoading]="loading" (click)="onSubmit()">登录</button>
+      <ng-container *ngIf="type !== 1">
+        <button nz-button nzType="primary" class="margin-button" (click)="onRegister()">注册</button>
+      </ng-container>
+    </div>
+  </div>
+</div>

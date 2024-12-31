@@ -1,0 +1,16 @@
+<nz-layout class="layout">
+  <app-header></app-header>
+  <nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzTheme="light">
+      <ul nz-menu [nzInlineCollapsed]="isCollapsed">
+        <li *ngFor="let item of menuItems" nz-menu-item class="custom-menu-item" [routerLink]="item.link">
+          <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
+          <span class="menu-label">{{ item.label }}</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-content class="content">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

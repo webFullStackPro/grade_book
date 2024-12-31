@@ -1,0 +1,56 @@
+@import "color.less";
+
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 60px;
+  background-image: url(../../assets/login_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  .login {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .3);
+    border-radius: 6px;
+    .title {
+      margin: 10px 0;
+      font-size: 36px;
+      display: flex;
+      justify-content: center;
+    }
+    .login-type {
+      display: flex;
+      justify-content: center;
+    }
+    .captcha-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .btn-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      .margin-button {
+        margin-left: 16px;
+      }
+    }
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    a {
+      color: #ffffff;
+      padding-left: 5px;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<nz-modal [(nzVisible)]="isVisible" [nzWidth]="modalWidth" (nzOnCancel)="onBack()" [nzStyle]="{'top': '50px'}">
+  <div *nzModalTitle>{{ title }}</div>
+  <ng-container *nzModalContent>
+    <form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+      <nz-form-item>
+        <nz-form-label nzFor="studentNumber">学号</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="studentNumber" placeholder="请输入学号" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzFor="gender">性别</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="gender" class="custom-select-width">
+            <nz-option nzLabel="男" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="女" [nzValue]="2"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzFor="majorName">专业名称</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzSearch [nzAddOnAfter]="majorNameSuffixIconButton">
+            <input nz-input formControlName="majorName" placeholder="请选择专业名称" readonly />
+          </nz-input-group>
+          <ng-template #majorNameSuffixIconButton>
+            <button nz-button nzType="primary" nzSearch (click)="findMajor()"><nz-icon nzType="search" /></button>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzFor="grade">年级</nz-form-label>
+        <nz-form-control>
+        <nz-input-number formControlName="grade" nzMin="2000" nzMax="2100" />
+        </nz-form-control>
+      </nz-form-item>
+<nz-form-item>
+        <nz-form-label nzFor="contactPhone">联系电话</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="contactPhone" placeholder="请输入联系电话" />
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+      <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+    </form>
+    <nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small" [nzScroll]="{ x: 'auto' }">
+      <thead>
+        <tr>
+          <th nzWidth="100px">学号</th>
+          <th nzWidth="80px">姓名</th>
+          <th nzWidth="100px">密码</th>
+          <th nzWidth="60px">性别</th>
+          <th nzWidth="100px">出生日期</th>
+          <th nzWidth="150px">专业名称</th>
+          <th nzWidth="80px">年级</th>
+          <th nzWidth="120px">联系电话</th>
+          <th nzWidth="180px">邮箱</th>
+          <th nzWidth="80px">省</th>
+          <th nzWidth="80px">市</th>
+          <th nzWidth="80px">区</th>
+          <th nzWidth="180px">家庭地址</th>
+          <th nzWidth="120px">入学日期</th>
+          <th nzWidth="120px">毕业日期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data" (dblclick)="onRowDblClick(data, $event)">
+          <td>{{data.studentNumber}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.password}}</td>
+          <td>
+            <ng-container *ngIf="data.gender === 1">男</ng-container>
+            <ng-container *ngIf="data.gender === 2">女</ng-container>
+          </td>
+          <td>{{data.birthDate}}</td>
+          <td>{{data.majorName}}</td>
+          <td>{{data.grade}}</td>
+          <td>{{data.contactPhone}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.provinceName}}</td>
+          <td>{{data.cityName}}</td>
+          <td>{{data.areaName}}</td>
+          <td>{{data.address}}</td>
+          <td>{{data.enrollmentDate}}</td>
+          <td>{{data.graduationDate}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+  <div *nzModalFooter>
+    <div class="form-button-container">
+      <button nz-button nzType="default" (click)="onBack()">关闭</button>
+    </div>
+  </div>
+</nz-modal>
+<major-selector (majorSelectedEvent)="handleMajorSelectedEvent($event)"></major-selector>

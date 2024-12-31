@@ -1,0 +1,77 @@
+<nz-breadcrumb class="breadcrumb">
+  <nz-breadcrumb-item>
+    <a routerLink="/Home">主页</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>专业信息列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<form nz-form class="search-form" [formGroup]="searchForm" (keydown.enter)="$event.preventDefault();onSearch()" nzLayout="inline">
+  <nz-form-item>
+    <nz-form-label nzFor="facultyName">院系名称</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="facultyNameSuffixIconButton">
+        <input nz-input formControlName="facultyName" placeholder="请选择院系名称" readonly />
+      </nz-input-group>
+      <ng-template #facultyNameSuffixIconButton>
+        <button nz-button nzType="primary" nzSearch (click)="findFaculty()"><nz-icon nzType="search" /></button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="name">专业名称</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="name" placeholder="请输入专业名称" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="degreeType">学位类型</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="degreeType" class="custom-select-width">
+        <nz-option nzLabel="学士" [nzValue]="1"></nz-option>
+        <nz-option nzLabel="硕士" [nzValue]="2"></nz-option>
+        <nz-option nzLabel="博士" [nzValue]="3"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button type="button" nzType="primary" [nzLoading]="searchLoading" (click)="onSearch()">查询</button>
+  <button nz-button type="button" class="margin-button" (click)="onReset()">重置</button>
+  <button nz-button type="button" class="margin-button" nzType="primary" (click)="onAdd()">新增</button>
+</form>
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="total" [nzLoading]="searchLoading" nzSize="small">
+  <thead>
+    <tr>
+      <th>院系名称</th>
+      <th>专业名称</th>
+      <th>学位类型</th>
+      <th>学制(年)</th>
+      <th>联系电话</th>
+      <th>邮箱</th>
+      <th>办公地点</th>
+      <th>专业简介</th>
+      <th nzWidth="250px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.facultyName}}</td>
+      <td>{{data.name}}</td>
+      <td>
+        <ng-container *ngIf="data.degreeType === 1">学士</ng-container>
+        <ng-container *ngIf="data.degreeType === 2">硕士</ng-container>
+        <ng-container *ngIf="data.degreeType === 3">博士</ng-container>
+      </td>
+      <td>{{data.duration}}</td>
+      <td>{{data.contactPhone}}</td>
+      <td>{{data.email}}</td>
+      <td>{{data.officeLocation}}</td>
+      <td class="ellipsis">{{data.majorDescription}}</td>
+      <td>
+        <button nz-button type="button" nzType="primary" (click)="editRow(data.id)">编辑</button>
+        <button nz-button type="button" nzDanger class="margin-button" (click)="delRow(data.id)">删除</button>
+        <button nz-button type="button" class="margin-button" (click)="detailRow(data)">详情</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<faculty-selector (facultySelectedEvent)="handleFacultySelectedEvent($event)"></faculty-selector>
+<major-add (addedEvent)="onAdded($event)"></major-add>
+<major-view></major-view>
