@@ -4,11 +4,7 @@
   width: 100vw;
   height: 100vh;
   padding-top: 60px;
-  background-image: url('~@/assets/login_bg.png');
-  /* 可选的其他样式 */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: $primary-color;
 
   .register {
     width: 70%;
@@ -48,7 +44,7 @@
 
   .footer {
     position: absolute;
-    bottom: 50px;
+    bottom: 0;
     width: 100%;
     text-align: center;
     span {

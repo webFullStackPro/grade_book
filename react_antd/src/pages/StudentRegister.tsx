@@ -189,9 +189,9 @@ const StudentRegister: React.FC = () => {
             <Col span={8}>
               <Form.Item name="gender" label="性别" rules={rules.gender}>
                 <Select placeholder="请选择性别" options={[
-                  { value: 1, label: <span>男</span> },
-                  { value: 2, label: <span>女</span> }
-                ]} />
+                  {value: 1, label: <span>男</span>},
+                  {value: 2, label: <span>女</span>}
+                ]}/>
               </Form.Item>
             </Col>
           </Row>
@@ -215,12 +215,12 @@ const StudentRegister: React.FC = () => {
           <Row gutter={10}>
             <Col span={8}>
               <Form.Item name="majorName" label="专业名称" rules={rules.majorName}>
-                <Input.Search placeholder="请选择专业名称" onSearch={findMajor} readOnly={true} />
+                <Input.Search placeholder="请选择专业名称" onSearch={findMajor} readOnly={true}/>
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item name="grade" label="年级" rules={rules.grade}>
-                <InputNumber min={2000} max={2100} />
+                <InputNumber min={2000} max={2100}/>
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -249,7 +249,8 @@ const StudentRegister: React.FC = () => {
           <Row gutter={10}>
             <Col span={8}>
               <Form.Item name="provinceCityArea" label="省/市/区">
-                <Cascader options={provinceCityAreaOptions} fieldNames={{ label: "name", value: "code" }} onChange={onAreaChange} placeholder="请选择省/市/区" />
+                <Cascader options={provinceCityAreaOptions} fieldNames={{label: "name", value: "code"}}
+                          onChange={onAreaChange} placeholder="请选择省/市/区"/>
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -275,7 +276,12 @@ const StudentRegister: React.FC = () => {
           <Button type="primary" onClick={onBack} style={{marginLeft: 'var(--button-margin-left)'}}>返回登录</Button>
         </div>
       </div>
-      <MajorSelector visible={majorSelectorVisible} onMajorSelected={handleMajorSelected} onCloseMajorSelector={handleCloseMajorSelector} />
+      <div className="footer">
+        <span>版权所有 &copy; 2024 - 2026 <a href="http://www.52ejn.com" target="_blank">源码学习网</a></span>
+        <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备2024308896号-1</a>
+      </div>
+      <MajorSelector visible={majorSelectorVisible} onMajorSelected={handleMajorSelected}
+                     onCloseMajorSelector={handleCloseMajorSelector}/>
     </div>
   );
 };

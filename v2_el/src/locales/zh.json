@@ -2,7 +2,9 @@
   "title": "XX学生成绩管理系统",
   "teacherRegisterTitle": "教师注册",
   "studentRegisterTitle": "学生注册",
-  "welcomeMessage": "欢迎来到XX学生成绩管理系统，使用vue2+elementui开发，欢迎加v共同交流学习",
-  "advertisement": "后端java/python/node，前端v2/v3/react，支持深度定制，远程安装部署，陪伴式讲解",
+  "welcomeMessage": "欢迎来到XX学生成绩管理系统，使用vue2+elementui开发",
+  "ad1": "后端java/python/node，前端vue2/vue3/react/angular",
+  "ad2": "web项目支持深度定制，远程安装部署，算法界面定制，界面样式编排，数据库设计",
+  "ad3": "手把手教学，保姆级贴心辅导，欢迎加v共同交流学习",
   "weixinAlt": "欢迎加v共同交流学习"
 }

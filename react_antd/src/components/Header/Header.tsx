@@ -5,6 +5,8 @@ import type { MenuProps } from 'antd';
 import { Dropdown, Modal, Space, Form, Input, Button, message } from 'antd';
 import {useNavigate} from "react-router-dom";
 import {UpdatePassForm} from "@/types/req/updatePassForm";
+import userApi from "@/api/userApi.ts";
+import {Result} from "@/types/result";
 
 
 interface HeaderProps {
@@ -106,9 +108,14 @@ const Header: React.FC<HeaderProps> = ({title}) => {
           messageApi.error('两次密码输入不一致');
           return
         }
-        // 显示成功消息
-        messageApi.success('操作成功');
 
+        const resp: Result<void> = await userApi.updatePass(updatePassForm)
+        if (!resp || resp.code !== 1) {
+          messageApi.error(resp && resp.msg ? resp.msg : '操作异常')
+          return
+        }
+
+        messageApi.success('操作成功');
         setIsModalOpen(false);
       } catch (error) {
         console.error('There was an error submitting the form!', error);

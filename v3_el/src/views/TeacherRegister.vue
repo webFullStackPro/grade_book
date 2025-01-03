@@ -1,9 +1,8 @@
 <template>
   <div class="register-page">
     <div class="register">
-      <div class="login__logo"></div>
-      <div class="login__title">{{ $t('title') }}</div>
-      <div class="login__subtitle">{{ $t('teacherRegisterTitle') }}</div>
+      <div class="login-title">{{ $t('title') }}</div>
+      <div class="login-subtitle">{{ $t('teacherRegisterTitle') }}</div>
       <el-form :model="teacherRegisterForm" :rules="rules" ref="teacherRegisterFormRef" @keyup.enter.native="onRegister" label-width="80px">
         <el-row>
           <el-col :span="8">
@@ -66,7 +65,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="教师简介" prop="profile">
-              <el-input v-model="teacherRegisterForm.profile" placeholder="请输入专业简介" type="textarea" :rows="5" maxlength="65535"></el-input>
+              <el-input v-model="teacherRegisterForm.profile" placeholder="请输入专业简介" type="textarea" :rows="4" maxlength="65535"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -92,6 +91,9 @@
           </el-col>
         </el-row>
       </el-form>
+    </div>
+    <div class="footer">
+      <span>版权所有 &copy; 2024 - 2026 <a href="http://www.52ejn.com" target="_blank">源码学习网</a></span><a href="http://beian.miit.gov.cn" target="_blank">粤ICP备2024308896号-1</a>
     </div>
     <el-dialog v-model="facultySelectorVisible" v-if="facultySelectorVisible" title="院系信息选择器(双击行选中)" :top="dialogTop" :width="dialogWidth">
       <faculty-selector @faculty-selected-event="handleFacultySelectedEvent">
@@ -244,5 +246,5 @@ const onBack = () => {
 </script>
 
 <style lang="scss">
-@import "@/assets/register.css";
+@use "@/assets/register.scss";
 </style>

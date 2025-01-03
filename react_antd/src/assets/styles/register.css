@@ -2,15 +2,11 @@
   width: 100vw;
   height: calc(100vh - 60px);
   padding-top: 60px;
-  background-image: url('../login_bg.png');
-  /* 可选的其他样式 */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: #006400;
 
   .footer {
     position: absolute;
-    bottom: 50px;
+    bottom: 15px;
     width: 100%;
     text-align: center;
     span {

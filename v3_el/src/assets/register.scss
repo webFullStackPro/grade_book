@@ -1,9 +1,9 @@
-@import "./color";
+
 .register-page {
   width: 100vw;
   height: 100vh;
   padding-top: 60px;
-  background-color: @primary-color;
+  background-color: #006400;;
   .register {
     width: 70%;
     margin: 0 auto;
@@ -23,15 +23,10 @@
       letter-spacing: 10px;
       text-align: center;
     }
-    .captcha-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
   }
   .footer {
     position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     width: 100%;
     text-align: center;
     span {

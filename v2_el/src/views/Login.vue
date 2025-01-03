@@ -157,13 +157,7 @@ export default {
   width: 100vw;
   height: 100vh;
   padding-top: 60px;
-  //background: $primary-color;
-  background-image: url('../assets/login_bg.png');
-  /* 可选的其他样式 */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
+  background-color: $primary-color;
 }
 
 .login {

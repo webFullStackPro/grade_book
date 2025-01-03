@@ -2,10 +2,7 @@
   width: 100vw;
   height: calc(100vh - 60px);
   padding-top: 60px;
-  background-image: url(../login_bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: #006400;
   .login {
     width: 400px;
     margin: 0 auto;

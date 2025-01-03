@@ -9,14 +9,16 @@ const Home: React.FC = () => {
     margin: '0 auto',
     display: 'flex',
     justifyContent: 'center',
-    fontSize: '24px',
-    marginTop: 20
+    fontSize: '22px',
+    marginTop: 10
   }
 
   return (
     <>
       <div style={homeStyle}>{t('welcomeMessage')}</div>
-      <div style={homeStyle}>{t('advertisement')}</div>
+      <div style={homeStyle}>{t('ad1')}</div>
+      <div style={homeStyle}>{t('ad2')}</div>
+      <div style={homeStyle}>{t('ad3')}</div>
       <div style={homeStyle}><img src={weixinqrcode} alt={t('weixinAlt')}/></div>
     </>
   )

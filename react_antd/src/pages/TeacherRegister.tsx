@@ -156,7 +156,7 @@ const TeacherRegister: React.FC = () => {
           <Row gutter={10}>
             <Col span={8}>
               <Form.Item name="facultyName" label="院系名称" rules={rules.facultyName}>
-                <Input.Search placeholder="请选择院系名称" onSearch={findFaculty} readOnly={true} />
+                <Input.Search placeholder="请选择院系名称" onSearch={findFaculty} readOnly={true}/>
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -167,9 +167,9 @@ const TeacherRegister: React.FC = () => {
             <Col span={8}>
               <Form.Item name="gender" label="性别" rules={rules.gender}>
                 <Select placeholder="请选择性别" options={[
-                  { value: 1, label: <span>男</span> },
-                  { value: 2, label: <span>女</span> }
-                ]} />
+                  {value: 1, label: <span>男</span>},
+                  {value: 2, label: <span>女</span>}
+                ]}/>
               </Form.Item>
             </Col>
           </Row>
@@ -187,11 +187,11 @@ const TeacherRegister: React.FC = () => {
             <Col span={8}>
               <Form.Item name="title" label="职称" rules={rules.title}>
                 <Select placeholder="请选择职称" options={[
-                  { value: 1, label: <span>助教</span> },
-                  { value: 2, label: <span>讲师</span> },
-                  { value: 3, label: <span>副教授</span> },
-                  { value: 4, label: <span>教授</span> }
-                ]} />
+                  {value: 1, label: <span>助教</span>},
+                  {value: 2, label: <span>讲师</span>},
+                  {value: 3, label: <span>副教授</span>},
+                  {value: 4, label: <span>教授</span>}
+                ]}/>
               </Form.Item>
             </Col>
           </Row>
@@ -210,7 +210,7 @@ const TeacherRegister: React.FC = () => {
           <Row gutter={10}>
             <Col span={24}>
               <Form.Item name="profile" label="教师简介" labelCol={{span: 2}}>
-                <Input.TextArea maxLength={65535} placeholder="请输入教师简介" autoSize={{ minRows: 5, maxRows: 5 }}/>
+                <Input.TextArea maxLength={65535} placeholder="请输入教师简介" autoSize={{minRows: 4, maxRows: 4}}/>
               </Form.Item>
             </Col>
           </Row>
@@ -231,7 +231,12 @@ const TeacherRegister: React.FC = () => {
           <Button type="primary" onClick={onBack} style={{marginLeft: 'var(--button-margin-left)'}}>返回登录</Button>
         </div>
       </div>
-      <FacultySelector visible={facultySelectorVisible} onFacultySelected={handleFacultySelected} onCloseFacultySelector={handleCloseFacultySelector} />
+      <div className="footer">
+        <span>版权所有 &copy; 2024 - 2026 <a href="http://www.52ejn.com" target="_blank">源码学习网</a></span>
+        <a href="http://beian.miit.gov.cn" target="_blank">粤ICP备2024308896号-1</a>
+      </div>
+      <FacultySelector visible={facultySelectorVisible} onFacultySelected={handleFacultySelected}
+                       onCloseFacultySelector={handleCloseFacultySelector}/>
     </div>
   );
 };

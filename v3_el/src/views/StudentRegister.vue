@@ -124,6 +124,9 @@
         </el-row>
       </el-form>
     </div>
+    <div class="footer">
+      <span>版权所有 &copy; 2024 - 2026 <a href="http://www.52ejn.com" target="_blank">源码学习网</a></span><a href="http://beian.miit.gov.cn" target="_blank">粤ICP备2024308896号-1</a>
+    </div>
     <el-dialog v-model="majorSelectorVisible" v-if="majorSelectorVisible" title="专业信息选择器(双击行选中)" :top="dialogTop" :width="dialogWidth">
       <major-selector @major-selected-event="handleMajorSelectedEvent">
       </major-selector>
@@ -303,5 +306,5 @@ const onBack = () => {
 </script>
 
 <style lang="scss">
-@import "@/assets/register.css";
+@use "@/assets/register.scss";
 </style>
